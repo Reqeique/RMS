@@ -22,16 +22,14 @@ export default function DashboardLayout({
       setIsLoading(false)
 
       // Redirect mobile users to employee page
-      if (mobile) {
-        router.push("/employee")
-      }
+      
     }
 
     checkMobile()
     window.addEventListener("resize", checkMobile)
 
     return () => window.removeEventListener("resize", checkMobile)
-  }, [router])
+  }, [])
 
   if (isLoading) {
     return (
@@ -41,8 +39,12 @@ export default function DashboardLayout({
     )
   }
 
-  if (isMobile) {
-    return null // Will redirect to employee page
+   if (isMobile) {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+        <main className="p-4">{children}</main>
+      </div>
+    )
   }
 
   return (
